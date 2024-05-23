@@ -13,6 +13,7 @@ public class NPC_OldMan extends Entity{
         speed = 1;
 
         getImage();
+        setDialogue();
     }
 
     public void getImage() {
@@ -26,6 +27,14 @@ public class NPC_OldMan extends Entity{
         right1 = setup("npc/oldman_right_1");
         right2 = setup("npc/oldman_right_2");
 
+    }
+
+    public void setDialogue() {
+        dialogues[0] = "Hello, young one.";
+        dialogues[1] = "I don't think we have met,\nI'm sheik. I have been roaming\nthis land for a long time.";
+        dialogues[2] = "Head into the forest to the north\nto find the first temple.";
+        dialogues[3] = "Or head into the village of\nthe south to get yourself better\nequipped.";
+        dialogues[4] = "Fun travels, young one.";
     }
 
     public void setAction() {
@@ -49,5 +58,11 @@ public class NPC_OldMan extends Entity{
 
             actionLockCounter = 0;
         }
+    }
+
+    public void speak() {
+
+        //Do this character specific stuff
+        super.speak();
     }
 }
