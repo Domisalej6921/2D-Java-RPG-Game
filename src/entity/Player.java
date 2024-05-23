@@ -82,9 +82,13 @@ public class Player extends Entity{
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
-            //CHECK NPC OR MONSTER COLLISION
+            //CHECK NPC COLLISION
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
+
+            //CHECK MONSTER COLLISION
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
 
             //CHECK EVENT
             gp.eHandler.checkEvent();
@@ -121,6 +125,15 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
         }
+
+        // This needs to be placed outside of key if statement!
+        if(invincible) {
+            invincibleCounter++;
+            if(invincibleCounter > 60) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
 
     public void pickUpObject(int i) {
@@ -137,6 +150,17 @@ public class Player extends Entity{
             if(gp.keyH.enterPressed == true) {
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
+            }
+        }
+    }
+
+    public void contactMonster(int monsterIndex) {
+
+        if (monsterIndex != 999) {
+
+            if(invincible == false) {
+                life -= 1;
+                invincible = true;
             }
         }
     }
@@ -179,7 +203,20 @@ public class Player extends Entity{
             }
             break;
         }
+
+        if(invincible) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+        }
+
         g2.drawImage(image, screenX, screenY, null);
 
+        //RESET ALPHA
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
+
+        //DEBUG
+//        g2.setFont(new Font("Arial", Font.PLAIN, 10));
+//        g2.setColor(Color.WHITE);
+//        g2.drawString("Invincible Counter: " + invincibleCounter, 10, 400);
     }
 }

@@ -20,11 +20,14 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
     String dialogues[] = new String[100];
     int dialogueCounter = 0;
     public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
+    public int type; // 0 = Player, 1 = NPC, 2 = Monster
 
     //CHARACTER STATUS
     public int maxLife;
@@ -74,8 +77,22 @@ public class Entity {
         //CHECK OBJ COLLISION
         gp.cChecker.checkObject(this, false);
 
+        //CHECK NPC COLLISION
+        gp.cChecker.checkEntity(this, gp.npc);
+
+        //CHECK FOR MONSTER
+        gp.cChecker.checkEntity(this, gp.monster);
+
         //CHECK PLAYER COLLISION
-        gp.cChecker.checkPlayer(this);
+        boolean contactPlayer = gp.cChecker.checkPlayer(this);
+
+        if(this.type == 2 && contactPlayer) {
+            if(!gp.player.invincible) {
+                //we give damage
+                gp.player.life -= 1;
+                gp.player.invincible = true;
+            }
+        }
 
         //If Collision is false then entity can move
         if(collisionOn == false) {
