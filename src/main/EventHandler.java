@@ -114,6 +114,7 @@ public class EventHandler {
             gp.playSE(4);
             gp.ui.currentDialogue = "You feel refreshed!, You gain health.";
             gp.player.life = gp.player.maxLife;
+            gp.assetSetter.setMonster();
         }
     }
 }
