@@ -1,9 +1,6 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -109,7 +106,6 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             if(timer >= 1000000000) {
-                System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 timer = 0;
             }
@@ -155,7 +151,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         //DEBUG
         long drawStart = 0;
-        if(keyH.checkDrawTime) {
+        if(keyH.showDebugText) {
             drawStart = System.nanoTime();
         }
 
@@ -213,12 +209,24 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         //DEBUG
-        if(keyH.checkDrawTime) {
+        if(keyH.showDebugText) {
             long drawEnd = System.nanoTime();
             long passed = drawEnd - drawStart;
-            g2.setColor(Color.white);
-            g2.drawString("Draw Time: " + passed + " ns", 10, 400);
-            System.out.println("Draw Time: " + passed + " ns");
+
+            g2.setFont(new Font("Arial", Font.PLAIN, 20));
+            g2.setColor(new Color(10, 36, 122));
+
+            int x = 10;
+            int y = 400;
+            int lineheight = 20;
+
+            g2.drawString("WorldX: " + player.worldX, x, y); y += lineheight;
+            g2.drawString("WorldY: " + player.worldY, x, y); y += lineheight;
+            g2.drawString("Col: " + (player.worldX + player.solidArea.x)/tileSize, x, y); y += lineheight;
+            g2.drawString("Row: " + (player.worldY + player.solidArea.y)/tileSize, x, y); y += lineheight;
+
+            g2.drawString("FPS: " + FPS, x, y); y += lineheight;
+            g2.drawString("Draw Time: " + passed + " ns", x, y);
         }
 
         g2.dispose();
