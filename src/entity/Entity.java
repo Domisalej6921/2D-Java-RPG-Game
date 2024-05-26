@@ -149,6 +149,9 @@ public class Entity {
         //CHECK FOR MONSTER
         gp.cChecker.checkEntity(this, gp.monster);
 
+        //CHECK COLLISION BETWEEN MONSTERS AND INTERACTIVE TILES
+        gp.cChecker.checkEntity(this, gp.iTiles);
+
         //CHECK PLAYER COLLISION
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 

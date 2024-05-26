@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import entity.Entity;
 import entity.Player;
+import interactive_tiles.InteractiveTiles;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -48,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity obj[] = new Entity[20];
     public Entity npc[] = new Entity[10];
     public Entity monster[] = new Entity[20];
+    public InteractiveTiles iTiles[] = new InteractiveTiles[50];
     public ArrayList<Entity> projectileList = new ArrayList<>();
     ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -71,6 +73,7 @@ public class GamePanel extends JPanel implements Runnable{
         assetSetter.setObject();
         assetSetter.setNPC();
         assetSetter.setMonster();
+        assetSetter.setInteractiveTile();
 
         gameState = titleState;
     }
@@ -152,6 +155,14 @@ public class GamePanel extends JPanel implements Runnable{
                     }
                 }
             }
+
+            //INTERACTIVE TILES UPDATE
+            for(int i = 0; i < iTiles.length; i++) {
+                if(iTiles[i] != null) {
+                    iTiles[i].update();
+                }
+            }
+
         }
         if (gameState == pauseState) {
             //Pause
@@ -176,6 +187,13 @@ public class GamePanel extends JPanel implements Runnable{
         } else {
             //Tile
             tileM.draw(g2);
+
+            //DRAWING INTERACTIVE TILES
+            for(int i = 0; i < iTiles.length; i++) {
+                if(iTiles[i] != null) {
+                    iTiles[i].draw(g2);
+                }
+            }
 
             //Adds entities to entityList
             entityList.add(player);
