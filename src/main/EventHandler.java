@@ -112,8 +112,9 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.player.attackCancel = true;
             gp.playSE(4);
-            gp.ui.currentDialogue = "You feel refreshed!, You gain health.";
+            gp.ui.currentDialogue = "You feel refreshed!, You gain health and mana.";
             gp.player.life = gp.player.maxLife;
+            gp.player.mana = gp.player.maxMana;
             gp.assetSetter.setMonster();
         }
     }
