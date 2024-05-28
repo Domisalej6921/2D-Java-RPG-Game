@@ -225,9 +225,14 @@ public class UI {
             if (commandNum == 2) {
                 g2.drawString(">", x - gp.tileSize, y);
             }
-        } else if (titleScreenState == 1) {
+        }
+        if (titleScreenState == 1) {
 
-            //CLASS SELECTION SCREEN
+            //CLASS SELECTION SCREEN - BACKGROUND
+            g2.setColor(Color.black);
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+            //TEXT
             g2.setColor(Color.white);
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 36F));
 
