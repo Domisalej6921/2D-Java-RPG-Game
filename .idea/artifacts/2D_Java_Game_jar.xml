@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="2D-Java-Game:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/2D_Java_Game_jar</output-path>
+    <root id="archive" name="2D-Java-Game.jar">
+      <element id="module-output" name="2D-Java-Game" />
+    </root>
+  </artifact>
+</component>
