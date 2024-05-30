@@ -18,8 +18,6 @@ public class Player extends Entity{
     public final int screenX;
     public final int screenY;
     public boolean attackCancel = false;
-    public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int maxInventorySize = 20;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -164,7 +162,6 @@ public class Player extends Entity{
             //Checks if players colliding with objects
             collisionOn = false;
             gp.cChecker.checkTile(this);
-            System.out.println(collisionOn); //------ DEBUG
 
             //Check Object Collision
             int objIndex = gp.cChecker.checkObject(this, true);
@@ -442,7 +439,7 @@ public class Player extends Entity{
 
     public void selectItem() {
 
-        int itemIndex = gp.ui.getItemIndexOnSlot();
+        int itemIndex = gp.ui.getItemIndexOnSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
 
         if(itemIndex < inventory.size()) {
 
