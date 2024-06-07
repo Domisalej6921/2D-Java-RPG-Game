@@ -1,5 +1,6 @@
 package ai;
 
+import entity.Entity;
 import main.GamePanel;
 
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class PathFinder {
         step = 0;
     }
 
-    public void setNodes(int startCol, int startRow, int goalCol, int goalRow) {
+    public void setNodes(int startCol, int startRow, int goalCol, int goalRow, Entity entity) {
 
         resetNodes();
 

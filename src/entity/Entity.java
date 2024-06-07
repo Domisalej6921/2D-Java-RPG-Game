@@ -401,7 +401,7 @@ public class Entity {
         int startCol = (worldX + solidArea.x) / gp.tileSize;
         int startRow = (worldY + solidArea.y) / gp.tileSize;
 
-        gp.pFinder.setNodes(startCol, startRow, goalCol, goalRow);
+        gp.pFinder.setNodes(startCol, startRow, goalCol, goalRow, this);
 
         if(gp.pFinder.search()) {
 
@@ -464,11 +464,11 @@ public class Entity {
             }
 
             //if the goal is reached, stop the search
-            int nextCol = gp.pFinder.pathList.get(0).col;
-            int nextRow = gp.pFinder.pathList.get(0).row;
-            if(nextCol == goalCol && nextRow == goalRow) {
-                onPath = false;
-            }
+//            int nextCol = gp.pFinder.pathList.get(0).col;
+//            int nextRow = gp.pFinder.pathList.get(0).row;
+//            if(nextCol == goalCol && nextRow == goalRow) {
+//                onPath = false;
+//            }
         }
     }
 }
