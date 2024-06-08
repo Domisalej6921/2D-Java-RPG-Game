@@ -423,10 +423,10 @@ public class Entity {
             }
             else if(enTopY >= nextY && enBottomY < nextY + gp.tileSize) {
                 //left or right
-                if(enLeftX > nextX) {
+                if (enLeftX > nextX) {
                     direction = "left";
                 }
-                if(enRightX < nextX) {
+                if (enRightX < nextX) {
                     direction = "right";
                 }
             }
