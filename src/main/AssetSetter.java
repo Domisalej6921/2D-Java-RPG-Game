@@ -48,6 +48,21 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = gp.tileSize * 27;
         i++;
 
+        gp.obj[mapNum][i] = new OBJ_Potion_Red(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 22;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 26;
+        i++;
+
+        gp.obj[mapNum][i] = new OBJ_Potion_Red(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 22;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 25;
+        i++;
+
+        gp.obj[mapNum][i] = new OBJ_Potion_Red(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 22;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 24;
+        i++;
+
         gp.obj[mapNum][i] = new OBJ_Heart(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 22;
         gp.obj[mapNum][i].worldY = gp.tileSize * 29;
