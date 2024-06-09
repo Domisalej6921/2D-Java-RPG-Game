@@ -18,9 +18,15 @@ public class AssetSetter {
 
         int mapNum = 0;
         int i = 0;
+
         gp.obj[mapNum][i] = new OBJ_Coin_Bronze(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 25;
         gp.obj[mapNum][i].worldY = gp.tileSize * 23;
+        i++;
+
+        gp.obj[mapNum][i] = new OBJ_Lantern(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 25;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 22;
         i++;
 
         gp.obj[mapNum][i] = new OBJ_Coin_Bronze(gp);
