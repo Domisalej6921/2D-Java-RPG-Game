@@ -337,6 +337,13 @@ public class Player extends Entity{
             if(gp.obj[gp.currentMap][i].type == type_pickupOnly) {
                 gp.obj[gp.currentMap][i].use(this);
                 gp.obj[gp.currentMap][i] = null;
+            }
+            //OBSTACLE
+            else if(gp.obj[gp.currentMap][i].type == type_obstacle) {
+                if(keyH.enterPressed) {
+                    attackCancel = true;
+                    gp.obj[gp.currentMap][i].interact();
+                }
             } else {
 
                 //INVENTORY ITEMS
@@ -486,8 +493,9 @@ public class Player extends Entity{
             }
             if(selectedItem.type == type_consumable) {
 
-                selectedItem.use(this);
-                inventory.remove(itemIndex);
+                if (selectedItem.use(this)) {
+                    inventory.remove(itemIndex);
+                }
             }
         }
     }

@@ -20,11 +20,12 @@ public class OBJ_Potion_Red extends Entity {
         price = 50;
     }
 
-    public void use(Entity entity) {
+    public boolean use(Entity entity) {
 
         gp.gameState = gp.dialogueState;
         gp.ui.currentDialogue = "You drink the " + name + ". Health increased by " + value + ".";
         entity.life += value;
         gp.playSE(4);
+        return true;
     }
 }
