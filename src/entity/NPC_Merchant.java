@@ -33,7 +33,15 @@ public class NPC_Merchant extends Entity{
     }
 
     public void setDialogue() {
-        dialogues[0] = "Ah, I see you found me.\nI have some items you may want.\nAre you interested?";
+        dialogues[0][0] = "Ah, I see you found me.\nI have some items you may want.\nAre you interested?";
+
+        dialogues[1][0] = "Goodbye!";
+
+        dialogues[2][0] = "You don't have enough coins.";
+
+        dialogues[3][0] = "You inventory is full.";
+
+        dialogues[4][0] = "You can't sell equipped items.";
     }
 
     public void setItems() {
@@ -44,8 +52,7 @@ public class NPC_Merchant extends Entity{
     }
 
     public void speak() {
-
-        super.speak();
+        facePlayer();
         gp.gameState = gp.tradeState;
         gp.ui.npc = this;
     }

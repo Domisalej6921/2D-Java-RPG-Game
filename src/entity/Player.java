@@ -398,10 +398,9 @@ public class Player extends Entity{
 
     public void interactNPC(int i) {
 
-        if(gp.keyH.enterPressed) {
-            if (i != 999) {
+        if (i != 999) {
+            if (gp.keyH.enterPressed) {
                 attackCancel = true;
-                gp.gameState = gp.dialogueState;
                 gp.npc[gp.currentMap][i].speak();
             }
         }
@@ -500,7 +499,8 @@ public class Player extends Entity{
 
             gp.playSE(8);
             gp.gameState = gp.dialogueState;
-            gp.ui.currentDialogue = "Level Up! You are now level " + level + "!\n" + "You feel stronger!";
+            dialogues[0][0] = "Level Up! You are now level " + level + "!\n" + "You feel stronger!";
+            startDialogue(this, 0);
         }
     }
 

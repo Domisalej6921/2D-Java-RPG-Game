@@ -21,6 +21,8 @@ public class NPC_OldMan extends Entity{
         solidArea.width = 30;
         solidArea.height = 30;
 
+        dialogueSet = -1;
+
         getImage();
         setDialogue();
     }
@@ -39,11 +41,17 @@ public class NPC_OldMan extends Entity{
     }
 
     public void setDialogue() {
-        dialogues[0] = "Hello, young one.";
-        dialogues[1] = "I don't think we have met,\nI'm sheik. I have been roaming\nthis land for a long time.";
-        dialogues[2] = "Head into the forest to the north\nto find the first temple.";
-        dialogues[3] = "Or head into the village of\nthe south to get yourself better\nequipped.";
-        dialogues[4] = "Fun travels, young one.";
+        dialogues[0][0] = "Hello, young one.";
+        dialogues[0][1] = "I don't think we have met,\nI'm sheik. I have been roaming\nthis land for a long time.";
+        dialogues[0][2] = "Head into the forest to the north\nto find the first temple.";
+        dialogues[0][3] = "Or head into the village of\nthe south to get yourself better\nequipped.";
+        dialogues[0][4] = "Fun travels, young one.";
+
+        dialogues[1][0] = "If you become tired, rest and save at the lake above.";
+        dialogues[1][1] = "However, if you save and rest, monsters will reappear.\nI have been here for a long time, and have no idea\nhow that works.";
+        dialogues[1][2] = "In any case, don't push yourself too hard.";
+
+        dialogues[2][0] = "I wonder how you open that door...";
     }
 
     public void setAction() {
@@ -86,8 +94,16 @@ public class NPC_OldMan extends Entity{
     public void speak() {
 
         //Do this character specific stuff
-        super.speak();
 
-        onPath = true;
+        facePlayer();
+        startDialogue(this, dialogueSet);
+
+        dialogueSet++;
+
+        if(dialogues[dialogueSet][0] == null) {
+            dialogueSet--;
+        }
+
+        //onPath = true;
     }
 }
