@@ -3,7 +3,8 @@ package main;
 import entity.NPC_Merchant;
 import entity.NPC_OldMan;
 import interactive_tiles.IT_DryTree;
-import monster.MON_GreenSlime;
+import monster_src.MON_GreenSlime;
+import monster_src.MON_Orc;
 import objects.*;
 
 public class AssetSetter {
@@ -122,6 +123,7 @@ public class AssetSetter {
 
         int i = 0;
         int mapNum = 0;
+
         gp.monster[mapNum][i] = new MON_GreenSlime(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 12;
         gp.monster[mapNum][i].worldY = gp.tileSize * 7;
@@ -145,6 +147,11 @@ public class AssetSetter {
         gp.monster[mapNum][i] = new MON_GreenSlime(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 25;
         gp.monster[mapNum][i].worldY = gp.tileSize * 37;
+
+        gp.monster[mapNum][i] = new MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 12;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 33;
+        i++;
     }
 
     public void setInteractiveTile() {
