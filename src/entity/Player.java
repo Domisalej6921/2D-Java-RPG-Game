@@ -2,7 +2,6 @@ package entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
@@ -38,10 +37,6 @@ public class Player extends Entity{
         solidArea.height = 32;
 
         setDefaultValues();
-        getImage();
-        getAttackImage();
-        setItems();
-        getGuardImage();
     }
 
     public void setDefaultValues() {
@@ -66,9 +61,15 @@ public class Player extends Entity{
         coin = 0;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
+        currentLight = null;
         projectile = new OBJ_Fireball(gp);
         attack = getAttack();
         defense = getDefense();
+
+        getImage();
+        getAttackImage();
+        setItems();
+        getGuardImage();
     }
 
     public void setDefaultPositions() {
@@ -77,11 +78,15 @@ public class Player extends Entity{
         direction = "down";
     }
 
-    public void restoreLifeAndMana() {
+    public void restoreStatus() {
         life = maxLife;
         mana = maxMana;
         invincible = false;
         transparent = false;
+        attacking = false;
+        guarding = false;
+        knockBack = false;
+        lightUpdated = true;
     }
 
     public void setItems() {

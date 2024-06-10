@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ai.PathFinder;
@@ -111,22 +110,18 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
-    public void retry() {
-
+    public void resetGame(boolean restart) {
         player.setDefaultPositions();
-        player.restoreLifeAndMana();
+        player.restoreStatus();
         assetSetter.setMonster();
         assetSetter.setNPC();
-    }
 
-    public void restart() {
-
-        player.setDefaultValues();
-        player.setItems();
-        assetSetter.setMonster();
-        assetSetter.setNPC();
-        assetSetter.setObject();
-        assetSetter.setInteractiveTile();
+        if(restart) {
+            player.setDefaultValues();
+            assetSetter.setObject();
+            assetSetter.setInteractiveTile();
+            eManager.lighting.resetDay();
+        }
     }
 
     public void setFullScreen() {
