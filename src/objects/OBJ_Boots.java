@@ -5,9 +5,11 @@ import entity.Entity;
 
 public class OBJ_Boots extends Entity {
 
+    public static final String objName = "Boots";
+
     public OBJ_Boots(GamePanel gp) {
         super(gp);
-        name = "Boots";
+        name = objName;
         down1 = setup("objects/boots", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\n" + "Boots power-up to increase speed.";
         price = 100;
