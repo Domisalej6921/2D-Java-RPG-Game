@@ -91,7 +91,7 @@ public class EventHandler {
             }
             //allows player to leave dungeon
             else if(hit(2, 9, 41, "any")) {
-                teleport(0, 12, 9, gp.outside);
+                teleport(0, 33, 16, gp.outside);
             }
             //travel to second floor of dungeon
             else if(hit(2, 8, 7, "any")) {
