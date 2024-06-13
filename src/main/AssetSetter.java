@@ -122,10 +122,10 @@ public class AssetSetter {
         gp.monster[mapNum][i].worldY = gp.tileSize * 4;
         i++;
 
-        gp.monster[mapNum][i] = new MON_Orc(gp);
-        gp.monster[mapNum][i].worldX = gp.tileSize * 33;
-        gp.monster[mapNum][i].worldY = gp.tileSize * 18;
-        i++;
+//        gp.monster[mapNum][i] = new MON_Orc(gp);
+//        gp.monster[mapNum][i].worldX = gp.tileSize * 33;
+//        gp.monster[mapNum][i].worldY = gp.tileSize * 18;
+//        i++;
     }
 
     public void setInteractiveTile() {

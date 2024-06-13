@@ -75,15 +75,31 @@ public class EventHandler {
             }
             //Goes into traders hut
             else if(hit(0, 12, 17, "any")) {
-                teleport(1, 6, 26);
+                teleport(1, 6, 26, gp.indoor);
             }
             //Ability to leave traders hut
             else if(hit(1, 6, 26, "any")) {
-                teleport(0, 12, 17);
+                teleport(0, 12, 17, gp.outside);
             }
             //allows player to talk to merchant through a table
             else if(hit(1, 6, 23, "up")) {
                 speak(gp.npc[1][0]);
+            }
+            //allows player to travel to dungeon
+            else if(hit(0, 33, 16, "any")) {
+                teleport(2, 9, 41, gp.dungeon);
+            }
+            //allows player to leave dungeon
+            else if(hit(2, 9, 41, "any")) {
+                teleport(0, 12, 9, gp.outside);
+            }
+            //travel to second floor of dungeon
+            else if(hit(2, 8, 7, "any")) {
+                teleport(3, 26, 41, gp.dungeon);
+            }
+            //travel back to first floor of dungeon
+            else if(hit(3, 26, 41, "any")) {
+                teleport(2, 8, 7, gp.dungeon);
             }
         }
     }
@@ -129,9 +145,10 @@ public class EventHandler {
         canTouchEvent = false;
     }
 
-    public void teleport(int map, int col, int row) {
+    public void teleport(int map, int col, int row, int area) {
 
         gp.gameState = gp.transitionState;
+        gp.nextArea = area;
 
         tempMap = map;
         tempCol = col;

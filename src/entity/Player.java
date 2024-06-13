@@ -5,10 +5,7 @@ import java.awt.image.BufferedImage;
 
 import main.GamePanel;
 import main.KeyHandler;
-import objects.OBJ_Fireball;
-import objects.OBJ_Key;
-import objects.OBJ_Shield_Wood;
-import objects.OBJ_Sword_Normal;
+import objects.*;
 
 public class Player extends Entity{
 
@@ -59,7 +56,7 @@ public class Player extends Entity{
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
-        currentWeapon = new OBJ_Sword_Normal(gp);
+        currentWeapon = new OBJ_Axe(gp); //Replace with sword after testing
         currentShield = new OBJ_Shield_Wood(gp);
         currentLight = null;
         projectile = new OBJ_Fireball(gp);
