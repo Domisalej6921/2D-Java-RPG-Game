@@ -38,8 +38,8 @@ public class GamePanel extends JPanel implements Runnable{
     Graphics2D g2;
 
     // WORLD SETTINGS
-    public final int maxWorldCol = 50;
-    public final int maxWorldRow = 50;
+    public int maxWorldCol;
+    public int maxWorldRow;
     public final int maxMap = 10;
     public int currentMap = 0;
 

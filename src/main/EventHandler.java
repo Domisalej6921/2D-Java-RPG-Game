@@ -74,15 +74,15 @@ public class EventHandler {
                 healingPool(gp.dialogueState);
             }
             //Goes into traders hut
-            else if(hit(0, 10, 39, "any")) {
-                teleport(1, 12, 13);
+            else if(hit(0, 12, 17, "any")) {
+                teleport(1, 6, 26);
             }
             //Ability to leave traders hut
-            else if(hit(1, 12, 13, "any")) {
-                teleport(0, 10, 39);
+            else if(hit(1, 6, 26, "any")) {
+                teleport(0, 12, 17);
             }
             //allows player to talk to merchant through a table
-            else if(hit(1, 12, 9, "up")) {
+            else if(hit(1, 6, 23, "up")) {
                 speak(gp.npc[1][0]);
             }
         }
