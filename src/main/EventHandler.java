@@ -70,7 +70,7 @@ public class EventHandler {
                 damagePit(gp.dialogueState);
             }
 
-            else if (hit(0, 23, 12, "up")) {
+            else if (hit(0, 23, 37, "down")) {
                 healingPool(gp.dialogueState);
             }
             //Goes into traders hut
