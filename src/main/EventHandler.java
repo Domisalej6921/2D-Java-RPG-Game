@@ -66,41 +66,15 @@ public class EventHandler {
         }
 
         if(canTouchEvent) {
-            if (hit(0, 27, 16, "right")) {
-                damagePit(gp.dialogueState);
-            }
-
-            else if (hit(0, 23, 37, "down")) {
-                healingPool(gp.dialogueState);
-            }
-            //Goes into traders hut
-            else if(hit(0, 12, 17, "any")) {
-                teleport(1, 6, 26, gp.indoor);
-            }
-            //Ability to leave traders hut
-            else if(hit(1, 6, 26, "any")) {
-                teleport(0, 12, 17, gp.outside);
-            }
-            //allows player to talk to merchant through a table
-            else if(hit(1, 6, 23, "up")) {
-                speak(gp.npc[1][0]);
-            }
-            //allows player to travel to dungeon
-            else if(hit(0, 33, 16, "any")) {
-                teleport(2, 9, 41, gp.dungeon);
-            }
-            //allows player to leave dungeon
-            else if(hit(2, 9, 41, "any")) {
-                teleport(0, 33, 16, gp.outside);
-            }
-            //travel to second floor of dungeon
-            else if(hit(2, 8, 7, "any")) {
-                teleport(3, 26, 41, gp.dungeon);
-            }
-            //travel back to first floor of dungeon
-            else if(hit(3, 26, 41, "any")) {
-                teleport(2, 8, 7, gp.dungeon);
-            }
+            if (hit(0, 27, 16, "right")) {damagePit(gp.dialogueState);}
+            else if (hit(0, 23, 37, "down")) {healingPool(gp.dialogueState);}
+            else if(hit(0, 12, 17, "any")) {teleport(1, 6, 26, gp.indoor);} //Goes into traders hut
+            else if(hit(1, 6, 26, "any")) {teleport(0, 12, 17, gp.outside);} //Ability to leave traders hut
+            else if(hit(1, 6, 23, "up")) {speak(gp.npc[1][0]);} //allows player to talk to merchant through a table
+            else if(hit(0, 33, 16, "any")) {teleport(2, 9, 41, gp.dungeon);}//allows player to travel to dungeon
+            else if(hit(2, 9, 41, "any")) {teleport(0, 33, 16, gp.outside);}//allows player to leave dungeon
+            else if(hit(2, 8, 7, "any")) {teleport(3, 27, 41, gp.dungeon);} //travel to second floor of dungeon
+            else if(hit(3, 26, 41, "any") == true) {teleport(2, 8, 7, gp.dungeon);} //travel back to first floor of dungeon
         }
     }
 

@@ -6,10 +6,7 @@ import entity.NPC_OldMan;
 import interactive_tiles.IT_DestructibleWall;
 import interactive_tiles.IT_DryTree;
 import interactive_tiles.IT_MetalPlate;
-import monster_src.MON_Bat;
-import monster_src.MON_GreenSlime;
-import monster_src.MON_Orc;
-import monster_src.MON_RedSlime;
+import monster_src.*;
 import objects.*;
 
 public class AssetSetter {
@@ -211,10 +208,19 @@ public class AssetSetter {
         gp.monster[mapNum][i].worldX = gp.tileSize * 10;
         gp.monster[mapNum][i].worldY = gp.tileSize * 19;
         i++;
+
+        mapNum = 3;
+        i = 0;
+
+        gp.monster[mapNum][i] = new MON_SkeletonLord(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 23;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 16;
+        i++;
     }
 
     public void setInteractiveTile() {
 
+        //Spawn world map
         int i = 0;
         int mapNum = 0;
 
@@ -222,6 +228,8 @@ public class AssetSetter {
         gp.iTiles[mapNum][i] = new IT_DryTree(gp, 30, 24);i++;
         gp.iTiles[mapNum][i] = new IT_DryTree(gp, 36, 37);i++;
 
+
+        //DUNGEON MAP
         mapNum = 2;
         i = 0;
 

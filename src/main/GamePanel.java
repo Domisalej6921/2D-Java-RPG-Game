@@ -368,6 +368,9 @@ public class GamePanel extends JPanel implements Runnable{
 
             g2.drawString("FPS: " + FPS, x, y); y += lineheight;
             g2.drawString("Draw Time: " + passed + " ns", x, y);
+            g2.drawString("God Mode: " + keyH.godModeOn, x, y += lineheight);
+            g2.drawString("Collision: " + player.collisionOn, x, y += lineheight);
+            g2.drawString("Map: " + currentMap, x, y += lineheight);
         }
     }
 

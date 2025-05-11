@@ -22,6 +22,7 @@ public class EnvironmentManager {
     }
 
     public void draw(Graphics2D g2) {
-        lighting.draw(g2);
+        //Debug to see the boss easier - will be removed when game is deployed
+        //lighting.draw(g2);
     }
 }
