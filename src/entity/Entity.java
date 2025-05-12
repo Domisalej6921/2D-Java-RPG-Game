@@ -55,6 +55,7 @@ public class Entity {
     public boolean offBalance = false;
     public Entity loot;
     public boolean opened = false;
+    public boolean inRage = false;
 
     //CHARACTER ATTRIBUTES
     public String name;
@@ -481,7 +482,7 @@ public class Entity {
     public void getRandomDirection(int interval) {
         actionLockCounter++;
 
-        if (actionLockCounter == interval) {
+        if (actionLockCounter > interval) {
 
             Random random = new Random();
             int i = random.nextInt(100) + 1; // Picks a random number from 1 to 100.
@@ -496,6 +497,31 @@ public class Entity {
                 direction = "right";
             }
 
+            actionLockCounter = 0;
+        }
+    }
+
+    public void moveTowardPlayer(int interval) {
+
+        actionLockCounter++;
+        if (actionLockCounter > interval) {
+
+            if(getXDistance(gp.player) > getYDistance(gp.player)) {
+                if(gp.player.getCenterX() < getCenterX()) {
+                    direction = "left";
+                }
+                else {
+                    direction = "right";
+                }
+            }
+            else if(getXDistance(gp.player) < getYDistance(gp.player)) {
+                if(gp.player.getCenterY() < getCenterY()) {
+                    direction = "up";
+                }
+                else {
+                    direction = "down";
+                }
+            }
             actionLockCounter = 0;
         }
     }
@@ -643,118 +669,124 @@ public class Entity {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
-        int tempScreenX = screenX;
-        int tempScreenY = screenY;
+    if(worldX + gp.tileSize*5 > gp.player.worldX - gp.player.screenX &&
+            worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+            worldY + gp.tileSize*5 > gp.player.worldY - gp.player.screenY &&
+            worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 
-        switch(direction) {
-            case "up":
-                if(!attacking) {
-                    if (spriteNum == 1) {
-                        image = up1;
-                    }
-                    if (spriteNum == 2) {
-                        image = up2;
-                    }
-                }
-                if(attacking) {
-                    tempScreenY = screenY - up1.getHeight();
-                    if (spriteNum == 1) {
-                        image = attackUp1;
-                    }
-                    if (spriteNum == 2) {
-                        image = attackUp2;
-                    }
-                }
-                break;
-            case "down":
-                if(!attacking) {
-                    if (spriteNum == 1) {
-                        image = down1;
-                    }
-                    if (spriteNum == 2) {
-                        image = down2;
-                    }
-                }
-                if(attacking) {
-                    if (spriteNum == 1) {
-                        image = attackDown1;
-                    }
-                    if (spriteNum == 2) {
-                        image = attackDown2;
-                    }
-                }
-                break;
-            case "left":
-                if(!attacking) {
-                    if (spriteNum == 1) {
-                        image = left1;
-                    }
-                    if (spriteNum == 2) {
-                        image = left2;
-                    }
-                }
-                if(attacking) {
-                    tempScreenX = screenX - left1.getWidth();
-                    if (spriteNum == 1) {
-                        image = attackLeft1;
-                    }
-                    if (spriteNum == 2) {
-                        image = attackLeft2;
-                    }
-                }
-                break;
-            case "right":
-                if(!attacking) {
-                    if (spriteNum == 1) {
-                        image = right1;
-                    }
-                    if (spriteNum == 2) {
-                        image = right2;
-                    }
-                }
-                if(attacking) {
-                    if (spriteNum == 1) {
-                        image = attackRight1;
-                    }
-                    if (spriteNum == 2) {
-                        image = attackRight2;
-                    }
-                }
-                break;
-        }
+            int tempScreenX = screenX;
+            int tempScreenY = screenY;
 
-        //MONSTER HP BAR
-        if(type == type_monster && hpBarOn) {
-
-            double oneScale = (double)gp.tileSize / maxLife;
-            double hpBarValue = oneScale * life;
-
-            g2.setColor(new Color(35, 35, 35));
-            g2.fillRect(screenX - 1, screenY - 16, gp.tileSize + 2, 12);
-
-            g2.setColor(new Color(255, 0, 30));
-            g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
-
-            hpBarCounter++;
-
-            if(hpBarCounter > 600) {
-                hpBarOn = false;
-                hpBarCounter = 0;
+            switch (direction) {
+                case "up":
+                    if (!attacking) {
+                        if (spriteNum == 1) {
+                            image = up1;
+                        }
+                        if (spriteNum == 2) {
+                            image = up2;
+                        }
+                    }
+                    if (attacking) {
+                        tempScreenY = screenY - up1.getHeight();
+                        if (spriteNum == 1) {
+                            image = attackUp1;
+                        }
+                        if (spriteNum == 2) {
+                            image = attackUp2;
+                        }
+                    }
+                    break;
+                case "down":
+                    if (!attacking) {
+                        if (spriteNum == 1) {
+                            image = down1;
+                        }
+                        if (spriteNum == 2) {
+                            image = down2;
+                        }
+                    }
+                    if (attacking) {
+                        if (spriteNum == 1) {
+                            image = attackDown1;
+                        }
+                        if (spriteNum == 2) {
+                            image = attackDown2;
+                        }
+                    }
+                    break;
+                case "left":
+                    if (!attacking) {
+                        if (spriteNum == 1) {
+                            image = left1;
+                        }
+                        if (spriteNum == 2) {
+                            image = left2;
+                        }
+                    }
+                    if (attacking) {
+                        tempScreenX = screenX - left1.getWidth();
+                        if (spriteNum == 1) {
+                            image = attackLeft1;
+                        }
+                        if (spriteNum == 2) {
+                            image = attackLeft2;
+                        }
+                    }
+                    break;
+                case "right":
+                    if (!attacking) {
+                        if (spriteNum == 1) {
+                            image = right1;
+                        }
+                        if (spriteNum == 2) {
+                            image = right2;
+                        }
+                    }
+                    if (attacking) {
+                        if (spriteNum == 1) {
+                            image = attackRight1;
+                        }
+                        if (spriteNum == 2) {
+                            image = attackRight2;
+                        }
+                    }
+                    break;
             }
-        }
 
-        if(invincible) {
-            hpBarOn = true;
-            hpBarCounter = 0;
-            changeAlpha(g2, 0.4f);
-        }
-        if(dying) {
-            dyingAnimation(g2);
-        }
+            //MONSTER HP BAR
+            if (type == type_monster && hpBarOn) {
 
-        g2.drawImage(image, tempScreenX, screenY, null);
+                double oneScale = (double) gp.tileSize / maxLife;
+                double hpBarValue = oneScale * life;
 
-        changeAlpha(g2, 1f);
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX - 1, screenY - 16, gp.tileSize + 2, 12);
+
+                g2.setColor(new Color(255, 0, 30));
+                g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
+
+                hpBarCounter++;
+
+                if (hpBarCounter > 600) {
+                    hpBarOn = false;
+                    hpBarCounter = 0;
+                }
+            }
+
+            if (invincible) {
+                hpBarOn = true;
+                hpBarCounter = 0;
+                changeAlpha(g2, 0.4f);
+            }
+            if (dying) {
+                dyingAnimation(g2);
+            }
+
+            g2.drawImage(image, tempScreenX, screenY, null);
+
+            changeAlpha(g2, 1f);
+        }
     }
 
     public void dyingAnimation(Graphics2D g2) {
