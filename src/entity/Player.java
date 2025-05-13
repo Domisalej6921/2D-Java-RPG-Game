@@ -56,7 +56,7 @@ public class Player extends Entity{
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
-        currentWeapon = new OBJ_Axe(gp); //Replace with sword after testing
+        currentWeapon = new OBJ_Sword_Normal(gp); //Replace with sword after testing
         currentShield = new OBJ_Shield_Wood(gp);
         currentLight = null;
         projectile = new OBJ_Fireball(gp);
@@ -72,7 +72,7 @@ public class Player extends Entity{
 
     public void setDefaultPositions() {
 
-        gp.currentMap = 0;
+        gp.currentMap = 2;
         worldX = gp.tileSize * 9;
         worldY = gp.tileSize * 9;
         direction = "down";
@@ -95,7 +95,10 @@ public class Player extends Entity{
         inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
-        inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Key(gp)); // Delete after testing
+        inventory.add(new OBJ_Axe(gp)); // Delete after testing
+        inventory.add(new OBJ_Lantern(gp)); // Delete after testing
+        inventory.add(new OBJ_Pickaxe(gp)); // Delete after testing
     }
 
     //Total attack is decided by strength and weapon attack value
