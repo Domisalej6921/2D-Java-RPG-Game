@@ -67,10 +67,8 @@ public class UI {
 
         this.g2 = g2;
 
-        // Reset text rendering state
         g2.setFont(maruMonica);
         g2.setColor(Color.WHITE);
-        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         //TITLE STATE
         if(gp.gameState == gp.titleState) {
@@ -125,10 +123,6 @@ public class UI {
         if(gp.gameState == gp.sleepState) {
             drawSleepScreen();
         }
-
-        // Reset text rendering state after drawing
-        g2.setFont(maruMonica);
-        g2.setColor(Color.WHITE);
     }
 
     public void drawPlayerLife() {
@@ -306,36 +300,29 @@ public class UI {
 
             //MENU
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 36F));
-            g2.setColor(Color.WHITE);
-
-            // Reset pointer state
-            boolean pointerDrawn = false;
 
             text = "NEW GAME";
             x = getXforCenteredText(text);
             y += gp.tileSize * 3.5;
             g2.drawString(text, x, y);
-            if (commandNum == 0 && !pointerDrawn) {
+            if (commandNum == 0) {
                 g2.drawString(">", x - gp.tileSize, y);
-                pointerDrawn = true;
             }
 
             text = "LOAD GAME";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
-            if (commandNum == 1 && !pointerDrawn) {
+            if (commandNum == 1) {
                 g2.drawString(">", x - gp.tileSize, y);
-                pointerDrawn = true;
             }
 
             text = "QUIT";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
-            if (commandNum == 2 && !pointerDrawn) {
+            if (commandNum == 2) {
                 g2.drawString(">", x - gp.tileSize, y);
-                pointerDrawn = true;
             }
         }
         if (titleScreenState == 1) {

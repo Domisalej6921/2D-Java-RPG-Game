@@ -1,8 +1,10 @@
 package monster_src;
 
+import data.Progress;
 import entity.Entity;
 import main.GamePanel;
 import objects.OBJ_Coin_Bronze;
+import objects.OBJ_Door_Iron;
 import objects.OBJ_Heart;
 import objects.OBJ_ManaCrystal;
 
@@ -28,6 +30,7 @@ public class MON_SkeletonLord extends Entity{
         defense = 2;
         exp = 50;
         knockBackPower = 5;
+        sleep = true;
 
         int size = gp.tileSize * 5;
         solidArea.x = 48;
@@ -43,6 +46,7 @@ public class MON_SkeletonLord extends Entity{
 
         getImage();
         getAttackImage();
+        setDialogue();
     }
 
     public void getImage() {
@@ -97,6 +101,15 @@ public class MON_SkeletonLord extends Entity{
         }
     }
 
+    public void setDialogue() {
+
+        dialogues[0][0] = "You dare to challenge me?";
+        dialogues[0][1] = "I will crush you!";
+        dialogues[0][2] = "You will pay for your insolence!";
+        dialogues[0][3] = "I will not go easy on you!";
+        dialogues[0][4] = "YOU WILL NOT GET THAT TREASURE!!!!!!";
+    }
+
     public void setAction() {
 
         if(inRage == false && life < maxLife / 2) {
@@ -129,6 +142,21 @@ public class MON_SkeletonLord extends Entity{
     }
 
     public void checkDrop() {
+
+        gp.bossBattleOn = false;
+        Progress.skeletonLordDefeated = true;
+
+        // Restore the old music
+        gp.stopMusic();
+        gp.playMusic(19);
+
+        //Remove the iron doors
+        for(int i = 0; i < gp.obj[1].length; i++) {
+            if(gp.obj[gp.currentMap][i] != null && gp.obj[gp.currentMap][i].name.equals(OBJ_Door_Iron.objName)) {
+                gp.playSE(21);
+                gp.obj[gp.currentMap][i] = null;
+            }
+        }
 
         int i = new Random().nextInt(100) + 1;
 

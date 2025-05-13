@@ -56,7 +56,7 @@ public class Player extends Entity{
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
-        currentWeapon = new OBJ_Sword_Normal(gp); //Replace with sword after testing
+        currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         currentLight = null;
         projectile = new OBJ_Fireball(gp);
@@ -91,14 +91,9 @@ public class Player extends Entity{
     }
 
     public void setItems() {
-
         inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
-        inventory.add(new OBJ_Key(gp)); // Delete after testing
-        inventory.add(new OBJ_Axe(gp)); // Delete after testing
-        inventory.add(new OBJ_Lantern(gp)); // Delete after testing
-        inventory.add(new OBJ_Pickaxe(gp)); // Delete after testing
     }
 
     //Total attack is decided by strength and weapon attack value
@@ -704,15 +699,11 @@ public class Player extends Entity{
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
         }
 
-        g2.drawImage(image, tempScreenX, tempScreenY, null);
+        if(drawing) {
+            g2.drawImage(image, tempScreenX, tempScreenY, null);
+        }
 
         //RESET ALPHA
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-
-
-        //DEBUG
-//        g2.setFont(new Font("Arial", Font.PLAIN, 10));
-//        g2.setColor(Color.WHITE);
-//        g2.drawString("Invincible Counter: " + invincibleCounter, 10, 400);
     }
 }
