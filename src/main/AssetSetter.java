@@ -1,5 +1,6 @@
 package main;
 
+import data.Progress;
 import entity.NPC_BigRock;
 import entity.NPC_Merchant;
 import entity.NPC_OldMan;
@@ -104,9 +105,14 @@ public class AssetSetter {
         mapNum = 3;
         i = 0;
 
-        gp.obj[mapNum][i] = new OBJ_Door_Iron(gp);
+//        gp.obj[mapNum][i] = new OBJ_Door_Iron(gp);
+//        gp.obj[mapNum][i].worldX = gp.tileSize * 25;
+//        gp.obj[mapNum][i].worldY = gp.tileSize * 15;
+//        i++;
+
+        gp.obj[mapNum][i] = new OBJ_BlueHeart(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 25;
-        gp.obj[mapNum][i].worldY = gp.tileSize * 15;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 8;
         i++;
     }
 
@@ -188,11 +194,10 @@ public class AssetSetter {
         gp.monster[mapNum][i].worldY = gp.tileSize * 4;
         i++;
 
-        //Got rid of for debugging purposes
-//        gp.monster[mapNum][i] = new MON_Orc(gp);
-//        gp.monster[mapNum][i].worldX = gp.tileSize * 33;
-//        gp.monster[mapNum][i].worldY = gp.tileSize * 18;
-//        i++;
+        gp.monster[mapNum][i] = new MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 33;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 18;
+        i++;
 
         mapNum = 2;
         i = 0;
@@ -225,10 +230,12 @@ public class AssetSetter {
         mapNum = 3;
         i = 0;
 
-        gp.monster[mapNum][i] = new MON_SkeletonLord(gp);
-        gp.monster[mapNum][i].worldX = gp.tileSize * 23;
-        gp.monster[mapNum][i].worldY = gp.tileSize * 16;
-        i++;
+        if(Progress.skeletonLordDefeated == false) {
+            gp.monster[mapNum][i] = new MON_SkeletonLord(gp);
+            gp.monster[mapNum][i].worldX = gp.tileSize * 23;
+            gp.monster[mapNum][i].worldY = gp.tileSize * 16;
+            i++;
+        }
     }
 
     public void setInteractiveTile() {

@@ -94,6 +94,7 @@ public class Player extends Entity{
         inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
+        inventory.add(new OBJ_Lantern(gp));
     }
 
     //Total attack is decided by strength and weapon attack value
