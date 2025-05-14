@@ -22,6 +22,7 @@ public class Entity {
     public String dialogues[][] = new String[20][20];
     public Entity attacker;
     public Entity linkedEntity;
+    public boolean temp = false;
 
     //COUNTER
     public int spriteCounter = 0;
@@ -56,6 +57,8 @@ public class Entity {
     public Entity loot;
     public boolean opened = false;
     public boolean inRage = false;
+    public boolean sleep = false;
+    public boolean drawing = true;
 
     //CHARACTER ATTRIBUTES
     public String name;
@@ -325,89 +328,90 @@ public class Entity {
 
     public void update() {
 
-        if(knockBack) {
+        if (sleep == false) {
+            if (knockBack) {
 
-            checkCollision();
-            if(collisionOn) {
-                knockBackCounter = 0;
-                knockBack = false;
-                speed = defaultSpeed;
-            } else if(!collisionOn) {
-                switch (knockBackDirection) {
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
+                checkCollision();
+                if (collisionOn) {
+                    knockBackCounter = 0;
+                    knockBack = false;
+                    speed = defaultSpeed;
+                } else if (!collisionOn) {
+                    switch (knockBackDirection) {
+                        case "up":
+                            worldY -= speed;
+                            break;
+                        case "down":
+                            worldY += speed;
+                            break;
+                        case "left":
+                            worldX -= speed;
+                            break;
+                        case "right":
+                            worldX += speed;
+                            break;
+                    }
+                }
+
+                knockBackCounter++;
+                if (knockBackCounter == 10) {
+                    knockBackCounter = 0;
+                    knockBack = false;
+                    speed = defaultSpeed;
+                }
+            } else if (attacking) {
+                attacking();
+            } else {
+                setAction();
+                checkCollision();
+
+                //If Collision is false then entity can move
+                if (!collisionOn) {
+                    switch (direction) {
+                        case "up":
+                            worldY -= speed;
+                            break;
+                        case "down":
+                            worldY += speed;
+                            break;
+                        case "left":
+                            worldX -= speed;
+                            break;
+                        case "right":
+                            worldX += speed;
+                            break;
+                    }
+                }
+
+                spriteCounter++;
+                if (spriteCounter > 12) {
+                    if (spriteNum == 1) {
+                        spriteNum = 2;
+                    } else if (spriteNum == 2) {
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
                 }
             }
 
-            knockBackCounter++;
-            if(knockBackCounter == 10) {
-                knockBackCounter = 0;
-                knockBack = false;
-                speed = defaultSpeed;
-            }
-        } else if (attacking) {
-            attacking();
-        } else {
-            setAction();
-            checkCollision();
-
-            //If Collision is false then entity can move
-            if(!collisionOn) {
-                switch(direction) {
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
+            if (invincible) {
+                invincibleCounter++;
+                if (invincibleCounter > 40) {
+                    invincible = false;
+                    invincibleCounter = 0;
                 }
             }
 
-            spriteCounter++;
-            if(spriteCounter > 12) {
-                if(spriteNum == 1) {
-                    spriteNum = 2;
-                }
-                else if(spriteNum == 2) {
-                    spriteNum = 1;
-                }
-                spriteCounter = 0;
+            if (shotAvailableCounter < 30) {
+                shotAvailableCounter++;
             }
-        }
 
-        if(invincible) {
-            invincibleCounter++;
-            if(invincibleCounter > 40) {
-                invincible = false;
-                invincibleCounter = 0;
-            }
-        }
-
-        if(shotAvailableCounter < 30) {
-            shotAvailableCounter++;
-        }
-
-        if(offBalance) {
-            offBalanceCounter++;
-            if(offBalanceCounter > 60) {
-                offBalance = false;
-                offBalanceCounter = 0;
+            if (offBalance) {
+                offBalanceCounter++;
+                if (offBalanceCounter > 60) {
+                    offBalance = false;
+                    offBalanceCounter = 0;
+                }
             }
         }
     }
